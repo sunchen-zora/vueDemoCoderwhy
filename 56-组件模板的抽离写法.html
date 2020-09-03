@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件模板的抽离写法</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+  </div>
+
+  <script src="js/vue.js"></script>
+  <!-- 1、使用script标签 -->
+  <script type="text/x-template" id="tem">
+    <div>
+      <h2>我是标题1</h2>
+      <p>我是段落1</p>
+    </div>
+  </script>
+  <script>
+    //全局组件
+    Vue.component('cpn1', {
+      template: `#tem`
+    })
+  </script>
+
+
+  <!-- 2、使用template标签 -->
+  <template id="tem">
+    <div>
+      <h2>我是标题2</h2>
+      <p>我是段落2</p>
+    </div>
+  </template>
+
+  <script>
+    //全局组件
+    Vue.component('cpn1', {
+      template: `#tem`
+    })
+
+
+
+    //root组件
+    const cpn = new Vue({
+      el: "#app",
+    })
+  </script>
+</body>
+
+</html>

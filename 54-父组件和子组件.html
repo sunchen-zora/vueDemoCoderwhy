@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>父组件和子组件</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn2></cpn2>
+    <cpn1></cpn1>
+
+  </div>
+  <script src="js/vue.js"></script>
+  <script>
+    // 1、 创建子组件构造器
+    const cpnC1 = Vue.extend({
+      template: `
+      <div>
+        <h2>我是标题1</h2>
+        <p>我是段落1</p>
+      </div>
+      `
+    })
+
+    // 2、 创建父组件构造器
+    const cpnC2 = Vue.extend({
+      template: `
+      <div>
+        <h2>我是标题2</h2>
+        <p>我是段落2</p>
+        <cpn1></cpn1>
+      </div>
+      `,
+      components: {
+        cpn1: cpnC1
+      }
+    })
+
+    //root组件
+    const cpn = new Vue({
+      el: "#app",
+      components: {
+        cpn2: cpnC2,
+        cpn1: cpnC1
+
+      }
+
+    })
+  </script>
+</body>
+
+</html>
