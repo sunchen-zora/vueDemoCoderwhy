@@ -14,42 +14,56 @@
     .login-register-width {
       width: 300px;
     }
+
+    .login-register {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 350px;
+    }
+
+    .ipt {
+      margin-top: 5px;
+    }
   </style>
 </head>
 
 <body>
   <div id="app">
-    <div class="headTab login-register-width">
-      <div @click="isChecked=true" style="background-color: green;
+    <!-- 头部 -->
+    <div class="login-register">
+      <div class="headTab login-register-width">
+        <div @click="isChecked=true" style="background-color: green;
       width: 150px;">登录</div>
-      <div @click="isChecked=false" style="background-color: red;
+        <div @click="isChecked=false" style="background-color: red;
       width: 150px;">注册</div>
+      </div>
+      <!-- tab切换 -->
+      <div>
+        <login v-if="isChecked"></login>
+        <Register v-else></Register>
+      </div>
     </div>
-    <div>
-      <login v-if="isChecked"></login>
-      <Register v-else></Register>
-    </div>
+    <!-- 账号登录 -->
     <template id="btn1">
-      <div style="width: 150px;">
+      <div style="width: 150px;margin: 20px 0;">
         <div>
           <input type="text" placeholder="账号">
-          <input type="text" placeholder="密码">
+          <input type="text" placeholder="密码" class="ipt">
         </div>
         <div>
-          <button type="button">登录</button>
+          <button type="button" style="margin-top: 5px;">登录</button>
         </div>
       </div>
     </template>
+    <!-- 账号注册 -->
     <template id="btn2">
-      <div style="width: 150px;">
-        <div>
+      <div style="width: 150px;margin: 20px 0;">
+        <div style="margin: 20px 0;">
           <input type="text" placeholder="账号">
-        </div>
-        <div>
-          <input type="text" placeholder="密码">
-        </div>
-        <div>
-          <input type="text" placeholder="确认密码">
+          <input type="text" placeholder="密码" class="ipt">
+          <input type="text" placeholder="确认密码" class="ipt">
         </div>
         <div>
           <button type="button">注册</button>
@@ -61,14 +75,16 @@
   <script src="js/vue.js"></script>
 
   <script>
+    // 登录组件注册
     Vue.component('login', {
       template: "#btn1",
-      
-    })
 
+    })
+    // "注册"组件注册
     Vue.component('Register', {
       template: "#btn2"
     })
+    // 挂载vue实例
     var btn = new Vue({
       el: "#app",
       data: {
